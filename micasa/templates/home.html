@@ -6,14 +6,17 @@
     <div class="w3-display-middle">
         <h3>Find Your Best Hood</h3>
 
-    <form class="navbar-form " role="search" action="{% url 'search_hood' %}">
+    <form class="navbar-form " role="search" action="{% url 'search_results' %}">
         <input type="text" name="search" placeholder="&#xF002;  Search Hood" id="input" class="w3-input w3-panel" style="font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    text-decoration: inherit;">
+    text-decoration: inherit; width:500px;">
     </form>
     </div>
 
+
+
+</div>
     <div class="w3-container">
     <div class="w3-row">
         <h2 class="w3-center"></h2>
@@ -28,8 +31,8 @@
 
                 <div class="w3-container w3-margin">
 
-                    <strong>{{ hood.name }}</strong>
-                       <a href="" class=" w3-right "style="color:blue">View More</a>
+                    <strong><i class="fas fa-map-marker-alt"></i>   {{ hood.name }}, </strong>
+                    <strong>{{hood.location}}</strong>
 
 
                 </div>
@@ -44,7 +47,5 @@
 
 </div>
 
-
-</div>
 
 {% endblock %}

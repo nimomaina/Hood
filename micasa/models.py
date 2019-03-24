@@ -7,7 +7,18 @@ from pyuploadcare.dj.models import ImageField
 # Create your models here.
 
 class Location(models.Model):
-    name = models.CharField(max_length=30)
+    locations = (
+        ('Nairobi', 'Nairobi'),
+        ('Kiambu', 'Kiambu'),
+        ('Eastlands', 'Eastlands'),
+        ('Machakos', 'Machakos'),
+        ('Nakuru', 'Nakuru'),
+        ('Thika', 'Thika'),
+
+    )
+    name = models.CharField(max_length=65, choices=locations)
+
+
 
     def save_loc(self):
         self.save()

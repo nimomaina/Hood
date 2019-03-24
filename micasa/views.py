@@ -7,14 +7,12 @@ from . forms import *
 from django.contrib.auth.models import User
 # Create your views here.
 
-@login_required(login_url = '/accounts/login')
 def home(request):
     hoods = Hood.objects.all()
 
     return render(request,'home.html',locals())
 
 
-@login_required(login_url='/accounts/login')
 def upload_hood(request):
     current_user = request.user
     if request.method == 'POST':
