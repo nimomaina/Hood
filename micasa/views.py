@@ -28,6 +28,36 @@ def upload_hood(request):
         hoodform = HoodForm()
     return render(request, 'upload-hood.html', locals())
 
+@login_required(login_url='/accounts/login/')
+def profile(request, username):
+
+    profile = User.objects.get(username=username)
+    print(profile.id)
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+    user = request.user
+    profile = User.objects.get(username=username)
+    hood = Hood.objects.filter(owner=user)
+    title = f'@{profile.username} '
+
+    return render(request, 'profile.html', locals())
+
+
+def edit(request):
+    profile = User.objects.get(username=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            return redirect('update_profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'edit_profile.html', locals())
 
 def search_category(request):
     location = Location.objects.all()
