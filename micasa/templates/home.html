@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+<div class="w3-display-container bgimg-1 " id="home" >
+    <div class="w3-display-middle">
+        <h3>Find Your Best Hood</h3>
+
+    <form class="navbar-form " role="search" action="{% url 'search_hood' %}">
+        <input type="text" name="search" placeholder="&#xF002;  Search Hood" id="input" class="w3-input w3-panel" style="font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;">
+    </form>
+    </div>
+
+    <div class="w3-container">
+    <div class="w3-row">
+        <h2 class="w3-center"></h2>
+        {% for hood in hoods %}
+        <div class="w3-col l4 m6 s12 w3-padding">
+            <div class="w3-card-4 w3-white">
+
+                <header class="hovereffect" style="height:300px">
+                    <img src=" {{ hood.image.cdn_url }}" class="img-responsive w3-image w3-center" style="min-height:100%; max-height:100%">
+
+                </header>
+
+                <div class="w3-container w3-margin">
+
+                    <strong>{{ hood.name }}</strong>
+                       <a href="" class=" w3-right "style="color:blue">View More</a>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
