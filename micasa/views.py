@@ -155,16 +155,16 @@ def filter_location(request):
 
 @login_required(login_url='/accounts/login')
 def add_post(request):
-    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
+    hood = Hood.objects.get(id=request.user.profile.hood.id)
     if request.method == 'POST':
         postform = PostForm(request.POST, request.FILES)
         if postform.is_valid():
             post = postform.save(commit=False)
             post.profile = request.user.profile
             post.user = request.user
-            post.neighborHood=request.user.profile.neighborhood
+            post.hood=request.user.profile.hood
             post.save()
-            return redirect('hood',request.user.profile.neighborhood.id)
+            return redirect('hood',request.user.profile.hood.id)
     else:
         postform = PostForm()
-    return render(request,'add-post.html',locals())
+    return render(request,'upload_post.html',locals())

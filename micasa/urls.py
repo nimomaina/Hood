@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^join(?P<hood_id>\d+)', views.join, name='join'),
     url(r'^leave/(?P<hood_id>\d+)', views.leave, name='leave'),
     url(r'^upload/$', views.upload_business, name='upload_business'),
+    url(r'^post/$', views.add_post, name='post'),
 
 ]
 

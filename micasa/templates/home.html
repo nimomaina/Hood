@@ -14,6 +14,12 @@
     font-weight: normal;
     text-decoration: inherit; width:500px;">
         </form>
+           {% if request.user.profile.hood %}
+
+
+                    <small class="w3-text-white"><a  href="{% url 'hood' hood_id=request.user.profile.hood.id %}">
+                       View Your Current Hood </a></small>
+                      {% endif %}
     </div>
 
 
@@ -42,16 +48,10 @@
                 </header>
 
                 <div class="w3-container w3-margin">
-                    {% if request.user.profile.hood %}
 
-
-                    <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'hood' hood_id=request.user.profile.hood.id %}">
-                        Current Hood </a></p>
-                      {% else %}
 
                     <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'join' hood_id=hood.id %}">
                         Join Hood </a></p>
-                    {% endif %}
 
 
                 </div>
