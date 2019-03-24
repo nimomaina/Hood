@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 from .models import *
 from django.contrib import messages
 from . forms import *
@@ -100,12 +100,28 @@ def filter_location(request):
 
     return render(request,'category/location.html', {"message":message,"location":searched_image, "locations":locations})
 
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        businessform = BusinessForm(request.POST, request.FILES)
+        if businessform.is_valid():
+            upload = businessform.save(commit=False)
+            upload.user=request.user
+            upload.hood=request.user.profile.hood
+            upload.save()
+        return redirect('hood',request.user.profile.hood.id)
+    else:
+        businessform = BusinessForm()
+    return render(request,'Business.html',locals())
 
-def project(request, hood_id):
-    try:
-        hood = Hood.objects.get(id = hood_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"project.html", {'project': project, 'rating': rating})
+@login_required(login_url='/accounts/login/')
+def hood(request,neighborhood_id):
+    current_user = request.user
+    hood_name = current_user.profile.hood
+    single_hood = Hood.objects.get(id = request.user.profile.hood.id)
+    business=Business.objects.get(id = request.user.profile.hood.id)
 
+    print(business)
 
+    return render(request,'hood.html',locals())
