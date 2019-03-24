@@ -113,12 +113,6 @@ WSGI_APPLICATION = 'hood.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -143,8 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 
 UPLOADCARE = {
-'pub_key': '1376e3b3154344af54f8',
-'secret': 'ce399c441025afbaa93f',
+'pub_key': 'd7f9cc3e23e27250634c',
+'secret': '63eafddf270355e8cefb',
 }
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
