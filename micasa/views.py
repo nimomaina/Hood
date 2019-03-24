@@ -7,6 +7,33 @@ from . forms import *
 from django.contrib.auth.models import User
 # Create your views here.
 
+@login_required(login_url = '/accounts/login')
+def home(request):
+    hoods = Hood.objects.all()
+    business = Business.objects.all()
+    posts = Post.objects.all()
+
+    return render(request,'home.html',locals())
+
+@login_required(login_url = '/accounts/login')
+def all_hoods(request):
+
+    if request.user.is_authenticated:
+        if Join.objects.filter(user_id=request.user).exists():
+            hood = Hood.objects.get(pk=request.user.join.hood_id.id)
+            businesses = Business.objects.filter(hood=request.user.join.hood_id.id)
+            posts = Post.objects.filter(hood=request.user.join.hood_id.id)
+            comments = Comments.objects.all()
+            print(posts)
+            return render(request, "hood.html", locals())
+        else:
+            neighbourhoods = Hood.objects.all()
+            return render(request, 'hood.html', locals())
+    else:
+        neighbourhoods = Hood.objects.all()
+
+        return render(request, 'hood.html', locals())
+
 
 def search_category(request):
     location = Location.objects.all()
