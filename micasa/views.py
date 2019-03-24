@@ -23,7 +23,7 @@ def upload_hood(request):
         if hoodform.is_valid():
             upload = hoodform.save(commit=False)
             upload.save()
-            return redirect('home_page')
+            return redirect('home')
     else:
         hoodform = HoodForm()
     return render(request, 'upload-hood.html', locals())
@@ -59,6 +59,23 @@ def edit(request):
         form = ProfileForm()
     return render(request, 'edit_profile.html', locals())
 
+
+
+def search_results(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
+        searched_hood = Hood.search_hood(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',locals())
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message})
+
+
+
+
 def search_category(request):
     location = Location.objects.all()
     category = Category.objects.all()
@@ -83,5 +100,12 @@ def filter_location(request):
 
     return render(request,'category/location.html', {"message":message,"location":searched_image, "locations":locations})
 
+
+def project(request, hood_id):
+    try:
+        hood = Hood.objects.get(id = hood_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"project.html", {'project': project, 'rating': rating})
 
 
