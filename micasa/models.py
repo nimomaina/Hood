@@ -88,7 +88,6 @@ class Business(models.Model):
     owner = models.ForeignKey(User)
     hood = models.ForeignKey(Hood)
     address = models.CharField(max_length=50)
-    location = models.ForeignKey(Location)
     category = models.ForeignKey(Category)
 
     def __str__(self):
