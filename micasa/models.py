@@ -6,12 +6,35 @@ from pyuploadcare.dj.models import ImageField
 
 # Create your models here.
 
+class Location(models.Model):
+    name = models.CharField(max_length=30)
+
+    def save_loc(self):
+        self.save()
+
+    def delete_loc(self):
+        self.delete()
+
+
+    def __str__(self):
+        return self.name
+
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
 
 
 class Hood(models.Model):
     name = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
+    image = ImageField()
     occupants = models.CharField(max_length=50)
+    location = models.ForeignKey(Location)
+
 
     class Meta:
         ordering = ['-pk']
@@ -23,22 +46,24 @@ class Hood(models.Model):
     def delete_hood(self):
         self.delete()
 
-    def __str__(self):
-
-        return self.name
-
 
     @classmethod
     def search_hood(cls, search_term):
-        hood = Hood.objects.filter(title__icontains=search_term)
+        hood = Hood.objects.filter(name__icontains=search_term)
         return hood
+
+
+    def __str__(self):
+        return self.name
+
+
+
 
 
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     bio = models.CharField(max_length = 255,null = True)
-    email = models.EmailField(null = True)
     full_name = models.CharField(max_length=255, null=True)
     hood = models.ForeignKey(Hood,null=True)
 
@@ -63,6 +88,8 @@ class Business(models.Model):
     owner = models.ForeignKey(User)
     hood = models.ForeignKey(Hood)
     address = models.CharField(max_length=50)
+    location = models.ForeignKey(Location)
+    category = models.ForeignKey(Category)
 
     def __str__(self):
         return self.business_name
@@ -81,7 +108,14 @@ class Business(models.Model):
         return business
 
 
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(max_length=300)
+    hood = models.ForeignKey(Hood, blank=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=65)
 
+    def __str__(self):
+        return self.title
 
 
 
