@@ -35,7 +35,7 @@ def hood(request,hood_id):
     current_user = request.user
     hood_name = current_user.profile.hood
     hood = Hood.objects.get(id = request.user.profile.hood.id)
-    business=Business.objects.get(id = request.user.profile.hood.id)
+    # business=Business.objects.get(id = request.user.profile.hood.id)
 
 
     return render(request,'hood.html',locals())
@@ -65,7 +65,7 @@ def search_results(request):
         searched_hood = Hood.search_hood(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',locals())
+        return render(request, 'search_hood.html',locals())
 
     else:
         message = "You haven't searched for any term"
