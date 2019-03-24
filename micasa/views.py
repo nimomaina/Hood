@@ -17,16 +17,15 @@ def home(request):
 @login_required(login_url='/accounts/login')
 def upload_hood(request):
     current_user = request.user
-
     if request.method == 'POST':
-        hoodform = HoodForm(request.POST, request.FILES)
-        if hoodform.is_valid():
-            upload = hoodform.save(commit=False)
+        form = HoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            upload = form.save(commit=False)
             upload.save()
             return redirect('home')
     else:
-        hoodform = HoodForm()
-    return render(request, 'upload-hood.html', locals())
+        form = HoodForm()
+    return render(request, 'upload_hood.html', locals())
 
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
