@@ -7,12 +7,16 @@ from . forms import *
 from django.contrib.auth.models import User
 # Create your views here.
 
+# views for hood
+
+
+@login_required(login_url='/accounts/login/')
 def home(request):
     hoods = Hood.objects.all()
-
     return render(request,'home.html',locals())
 
 
+@login_required(login_url='/accounts/login/')
 def upload_hood(request):
     current_user = request.user
     if request.method == 'POST':
@@ -24,6 +28,50 @@ def upload_hood(request):
     else:
         form = HoodForm()
     return render(request, 'upload_hood.html', locals())
+
+
+@login_required(login_url='/accounts/login/')
+def hood(request,hood_id):
+    current_user = request.user
+    hood_name = current_user.profile.hood
+    hood = Hood.objects.get(id = request.user.profile.hood.id)
+    # business=Business.objects.get(id = request.user.profile.hood.id)
+
+
+    return render(request,'hood.html',locals())
+
+
+
+@login_required(login_url='/accounts/login')
+def join(request,hood_id):
+    hood = Hood.objects.get(id=hood_id)
+    current_user = request.user
+    current_user.profile.hood = hood
+    current_user.profile.save()
+    return redirect('hood',hood_id)
+
+@login_required(login_url='/accounts/login')
+def leave(request,hood_id):
+    current_user = request.user
+    current_user.profile.hood = None
+    current_user.profile.save()
+    return redirect('home')
+
+
+
+def search_results(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
+        searched_hood = Hood.search_hood(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',locals())
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message})
+
+# views for profile
 
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
@@ -58,18 +106,22 @@ def edit(request):
 
 
 
-def search_results(request):
-    if 'search' in request.GET and request.GET['search']:
-        search_term = request.GET.get('search')
-        searched_hood = Hood.search_hood(search_term)
-        message = f"{search_term}"
+# business views
 
-        return render(request, 'search.html',locals())
-
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        businessform = BusinessForm(request.POST, request.FILES)
+        if businessform.is_valid():
+            upload = businessform.save(commit=False)
+            upload.user=request.user
+            upload.hood=request.user.profile.hood
+            upload.save()
+        return redirect('hood',request.user.profile.hood.id)
     else:
-        message = "You haven't searched for any term"
-        return render(request,'search.html',{"message":message})
-
+        businessform = BusinessForm()
+    return render(request,'business.html',locals())
 
 
 
@@ -97,28 +149,4 @@ def filter_location(request):
 
     return render(request,'category/location.html', {"message":message,"location":searched_image, "locations":locations})
 
-@login_required(login_url='/accounts/login')
-def upload_business(request):
-    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
-    if request.method == 'POST':
-        businessform = BusinessForm(request.POST, request.FILES)
-        if businessform.is_valid():
-            upload = businessform.save(commit=False)
-            upload.user=request.user
-            upload.hood=request.user.profile.hood
-            upload.save()
-        return redirect('hood',request.user.profile.hood.id)
-    else:
-        businessform = BusinessForm()
-    return render(request,'business.html',locals())
 
-@login_required(login_url='/accounts/login/')
-def hood(request,neighborhood_id):
-    current_user = request.user
-    hood_name = current_user.profile.hood
-    single_hood = Hood.objects.get(id = request.user.profile.hood.id)
-    business=Business.objects.get(id = request.user.profile.hood.id)
-
-    print(business)
-
-    return render(request,'hood.html',locals())

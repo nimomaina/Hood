@@ -27,10 +27,9 @@
             <div class="w3-card-4 w3-white" style="padding-bottom:5px;padding-top:3px;">
                 <div class="w3-container w3-margin">
                     <a href="{% url 'hood' hood_id=hood.id %}">
-                           <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
-                    <strong>{{hood.location}}</strong>
+                        <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
+                        <strong>{{hood.location}}</strong>
                     </a>
-
 
 
                 </div>
@@ -43,8 +42,16 @@
                 </header>
 
                 <div class="w3-container w3-margin">
-                    <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="">
-                        Join Hood                  </a></p>
+                    {% if request.user.profile.hood %}
+
+
+                    <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'hood' hood_id=request.user.profile.hood.id %}">
+                        Current Hood </a></p>
+                      {% else %}
+
+                    <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'join' hood_id=hood.id %}">
+                        Join Hood </a></p>
+                    {% endif %}
 
 
                 </div>

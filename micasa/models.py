@@ -6,6 +6,19 @@ from pyuploadcare.dj.models import ImageField
 
 # Create your models here.
 
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
 class Location(models.Model):
     locations = (
         ('Nairobi', 'Nairobi'),

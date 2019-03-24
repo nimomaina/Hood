@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+<div class="w3-display-container w3-animate-opacity ">
+    <img src="{{hood.image.cdn_url}} " alt="hourglass" style="width:100%;min-height:350px;max-height:400px;filter: brightness(40%);
+">
+
+    <div class="w3-display-middle w3-text-white w3-center w3-xlarge">
+        <strong><i class="fas fa-map-marker-alt "></i> {{ hood.name }}, </strong>
+        <strong>{{hood.location}}</strong>  </div>
+<div class="w3-display-bottomleft" style="margin-left:20%;margin-bottom:5%"><p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'leave' hood_id=hood.id %}">
+            Leave Hood </a></p></div>
+
+
+        <div class="w3-display-bottomright" style="margin-right:20%;margin-bottom:5%">  <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="">
+            Add Business</a></p></div>
+
+
+
+</div>
+<div class="w3-row-padding">
+    <div class="w3-col l4 w3-padding w3-center">
+        <i class="fas fa-briefcase fa-2x w3-center "></i>
+
+        <h3><strong>Business</strong></h3>
+
+    </div>
+    <div class="w3-col l4 w3-padding w3-center">
+        <i class="fas fa-warehouse fa-2x w3-center "></i>
+        <h3><strong>Amenities</strong></h3>
+    </div>
+    <div class="w3-col l4 w3-padding w3-center">
+        <i class="fas fa-pen-square fa-2x w3-center"></i>
+        <h3><strong>Udaku</strong></h3>
+
+
+    </div>
+
+
+</div>
+{% endblock %}
