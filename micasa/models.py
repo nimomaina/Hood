@@ -80,7 +80,7 @@ class Profile(models.Model):
 
     @classmethod
     def filter_by_id(cls, id):
-        details = Proftetile.objects.filter(user=id).first()
+        details = Profile.objects.filter(user=id).first()
         return details
 
 class Business(models.Model):
