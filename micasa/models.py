@@ -110,12 +110,16 @@ class Business(models.Model):
     def delete_business(self):
         self.delete()
 
-
+    @classmethod
+    def search_by_category(cls, category):
+        biz = cls.objects.filter(category__name__icontains=category)
+        return biz
 
     @classmethod
     def search_business(cls, search_term):
         business = Business.objects.filter(business_name__icontains=search_term)
         return business
+
 
 
 class Post(models.Model):

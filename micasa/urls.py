@@ -13,6 +13,9 @@ urlpatterns = [
     url(r'^accounts/update/', views.edit, name='update_profile'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^hood/(?P<hood_id>\d+)', views.hood, name='hood'),
+    url(r'^join(?P<hood_id>\d+)', views.join, name='join'),
+    url(r'^leave/(?P<hood_id>\d+)', views.leave, name='leave'),
+    url(r'^upload/$', views.upload_business, name='upload_business'),
 
 ]
 

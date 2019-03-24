@@ -78,14 +78,14 @@ def search_category(request):
     category = Category.objects.all()
     if 'Category' in request.GET and request.GET["Category"]:
         category = request.GET.get("Category")
-        searched_image = Business.search_by_category(category)
+        searched_business = Business.search_by_category(category)
         message = f"{category}"
 
-        return render(request,'category/searched.html', {"message":message,"Category":searched_image})
+        return render(request,'category/searched.html', {"message":message,"Category":searched_business})
 
     else:
         message = "You haven't searched for anything"
-        return render(request,'category/searched.html',{"message":message})
+        return render(request,'search_business.html',{"message":message})
 
 
 def filter_location(request):
@@ -110,7 +110,7 @@ def upload_business(request):
         return redirect('hood',request.user.profile.hood.id)
     else:
         businessform = BusinessForm()
-    return render(request,'Business.html',locals())
+    return render(request,'business.html',locals())
 
 @login_required(login_url='/accounts/login/')
 def hood(request,neighborhood_id):
