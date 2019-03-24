@@ -26,9 +26,11 @@
         <div class="w3-col l4 m6 s12 w3-padding">
             <div class="w3-card-4 w3-white" style="padding-bottom:5px;padding-top:3px;">
                 <div class="w3-container w3-margin">
-
-                    <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
+                    <a href="{% url 'hood' hood_id=hood.id %}">
+                           <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
                     <strong>{{hood.location}}</strong>
+                    </a>
+
 
 
                 </div>
