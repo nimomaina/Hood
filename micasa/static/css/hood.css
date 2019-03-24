@@ -8,8 +8,9 @@
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/build.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/flood.jpg');
   min-height: 100%;
+  brightness:(40%)
 }
 
 .w3-wide {letter-spacing: 10px;}
