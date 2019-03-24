@@ -35,7 +35,7 @@ def hood(request,hood_id):
     current_user = request.user
     hood_name = current_user.profile.hood
     hood = Hood.objects.get(id = request.user.profile.hood.id)
-    # business=Business.objects.get(id = request.user.profile.hood.id)
+    business=Business.objects.get(id = request.user.profile.hood.id)
 
 
     return render(request,'hood.html',locals())
@@ -150,3 +150,21 @@ def filter_location(request):
     return render(request,'category/location.html', {"message":message,"location":searched_image, "locations":locations})
 
 
+# post view
+
+
+@login_required(login_url='/accounts/login')
+def add_post(request):
+    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        postform = PostForm(request.POST, request.FILES)
+        if postform.is_valid():
+            post = postform.save(commit=False)
+            post.profile = request.user.profile
+            post.user = request.user
+            post.neighborHood=request.user.profile.neighborhood
+            post.save()
+            return redirect('hood',request.user.profile.neighborhood.id)
+    else:
+        postform = PostForm()
+    return render(request,'add-post.html',locals())

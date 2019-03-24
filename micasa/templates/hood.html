@@ -16,7 +16,7 @@
         </p>
 
 
-        <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="">Add Business</a></p>
+        <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'upload_business' %}">Add Business</a></p>
     </div>
 
 
@@ -40,5 +40,25 @@
     </div>
 
 
+</div>
+<div class="w3-container">
+  <h2>Bordered Table</h2>
+  <p>The w3-bordered class adds a bottom border to each table row:</p>
+
+  <table class="w3-table w3-bordered">
+    <tr>
+      <th>Business Name</th>
+      <th>Email address</th>
+    </tr>
+      {% for biz in hood.business.all %}
+    <tr>
+      <td>{{biz.business_name}}</td>
+      <td>{{biz.address}}</td>
+          <td>{{biz.category}}</td>
+          <td>{{biz.owner.username}}</td>
+    </tr>
+      {% endfor %}
+
+  </table>
 </div>
 {% endblock %}
