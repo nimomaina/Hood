@@ -19,7 +19,8 @@
 
                     <small class="w3-text-white"><a  href="{% url 'hood' hood_id=request.user.profile.hood.id %}">
                        View Your Current Hood </a></small>
-                      {% endif %}
+        {% else %}
+
     </div>
 
 
@@ -64,6 +65,6 @@
     </div>
 
 </div>
-
+ {% endif %}
 
 {% endblock %}
