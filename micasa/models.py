@@ -7,16 +7,6 @@ from pyuploadcare.dj.models import ImageField
 # Create your models here.
 
 
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
 
 
 class Location(models.Model):
@@ -106,6 +96,16 @@ class Profile(models.Model):
     def filter_by_id(cls, id):
         details = Profile.objects.filter(user=id).first()
         return details
+
+    @receiver(post_save, sender=User)
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+        instance.profile.save()
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 class Business(models.Model):
     business_name = models.CharField(max_length=50)
