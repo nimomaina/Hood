@@ -1,12 +1,16 @@
 {%extends "registration/base.html"%}
 {% load bootstrap3 %}
+{%load static%}
+
 {% block content %}
 <div class="container w3-margin-top">
 
     <div class="w3-row-padding">
 
-
-        <div class="w3-col m12 l4 w3-mobile">
+ <div class="w3-col l6 w3-hide-medium w3-hide-small">
+            <img src="{%static 'images/sign.jpg'%}" style="width:100%; height:auto">
+        </div>
+        <div class="w3-col l6 m12 w3-mobile">
             {% if form.errors %}
             <p> Password or Username is incorrect </p>
             {% endif %}
@@ -14,7 +18,7 @@
 
 
                 <header class="w3-container ">
-                    <h2 class="text-center insta">Awwwwards</h2>
+                    <h2 class="text-center insta">Hood Watch</h2>
                     <hr>
                 </header>
                 <div class="w3-container">

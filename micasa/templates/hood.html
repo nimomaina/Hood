@@ -27,12 +27,12 @@
     </div>
     <div class="w3-display-bottomright">
           <p>
-            <a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white" href="{% url 'leave' hood_id=hood.id %}">Leave Hood </a>
+            <a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white w3-margin-right" href="{% url 'leave' hood_id=hood.id %}">Leave Hood </a>
         </p>
 
     </div>
     <div class="w3-display-bottomleft">
-                <p><a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white" href="{% url 'upload_business' %}">Add Business</a></p>
+                <p><a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white w3-margin-left" href="{% url 'upload_business' %}">Add Business</a></p>
 
     </div>
 
@@ -43,7 +43,7 @@
     <br>
     <div class="w3-row">
         <div class=" w3-padding w3-center">
-            <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center "></i>
+            <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center w3-text-pink"></i>
 
                 <h3><strong>Businesses</strong></h3></a>
             <hr>
@@ -71,31 +71,38 @@
     <br>
     <div class="w3-row">
         <div class=" w3-padding w3-center">
-            <a href="/post"><i class="fas fa-pen-square fa-2x w3-center"></i>
-                <h3><strong>Udaku Mtaani</strong></h3></a>
+            <a href="/post"><i class="fas fa-pen-square fa-2x w3-center w3-text-pink"></i>
+                <h3 ><strong>Udaku Mtaani</strong></h3></a>
             <hr>
 
 
         </div>
+
         <div>
             <div class="w3-row-padding">
             {% for post in posts%}
             <div class="w3-col l6">
 
-            <div class="w3-card-2 w3-center">
+            <div class="w3-card-2 w3-center " >
 
-                <header class="w3-container">
-                    <h3>{{post.title}}</h3>
+                <header class="w3-container w3-serif ">
+                    <h3>{{post.title}}!!</h3>
+                    <hr>
 
                 </header>
 
                 <div class="w3-container">
-                    <p>{{post.description}}</p>
                 </div>
 
                 <footer class="w3-container">
-                    <h5>{{user.username}}</h5>
+                         <blockquote class="w3-panel w3-leftbar w3-light-grey">
+  <p class="w3-large">
+  <i>                    <p>{{post.description}}</p>
+</i></p>
+  <p>~ {{user.username}}</p>
+</blockquote>
                 </footer>
+
 
             </div>
                 </div>
@@ -104,13 +111,15 @@
 
 
         </div>
+        <br>
+        <br>
         <div class="w3-row">
 
 
             <div class="w3-row w3-center">
                 <br>
                 <div class="w3-col l6 m6 s12">
-                    <i class="fas fa-hospital-symbol fa-2x"></i>
+                    <i class="fas fa-hospital-symbol fa-2x w3-text-pink"></i>
                     <br>
 
                     <h3>Health Care Department</h3>
@@ -134,7 +143,7 @@
                 </div>
 
                 <div class="w3-col l6 m6 s12 ">
-                    <i class="fas fa-shield-alt fa-2x"></i>
+                    <i class="fas fa-shield-alt fa-2x w3-text-pink"></i>
                     <br>
                     <h3>Police Department</h3>
                         <div class="w3-card-4 w3-white w3-padding w3-margin ">
