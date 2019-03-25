@@ -90,15 +90,7 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
-    @classmethod
-    def get_by_id(cls, id):
-        details = Profile.objects.get(user=id)
-        return details
 
-    @classmethod
-    def filter_by_id(cls, id):
-        details = Profile.objects.filter(user=id).first()
-        return details
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
