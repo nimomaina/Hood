@@ -21,77 +21,90 @@
 
 
 </div>
-<div class="w3-row-padding">
-    <div class="w3-col l4 w3-padding w3-center">
-        <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center "></i>
 
-            <h3><strong>Business</strong></h3></a>
-
-    </div>
-    <div class="w3-col l4 w3-padding w3-center">
-        <a href=""><i class="fas fa-warehouse fa-2x w3-center "></i>
-            <h3><strong>Amenities</strong></h3></a>
-    </div>
-    <div class="w3-col l4 w3-padding w3-center">
-        <a href="/post"><i class="fas fa-pen-square fa-2x w3-center"></i>
-            <h3><strong>Udaku</strong></h3></a>
-
-
-    </div>
-
-
-</div>
 <div class="w3-container">
     <br>
     <div class="w3-row">
-    <table class="w3-table w3-bordered">
-        <tr>
-            <th>Business Name</th>
-            <th>Email address</th>
-            <th>Category</th>
-            <th>Owner</th>
-        </tr>
-        {% for biz in businesses%}
-        <tr>
-            <td>{{biz.business_name}}</td>
-            <td>{{biz.address}}</td>
-            <td>{{biz.category}}</td>
-            <td>{{biz.owner.username}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    </div>
-    <br>
-        <div class="w3-row">
-            <h
-            <div>
-                {% for post in posts%}
+        <div class=" w3-padding w3-center">
+            <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center "></i>
 
-                <div class="w3-card-2 w3-center">
-
-                    <header class="w3-container w3-black w3-text-pink">
-                        <h3>{{post.title}}</h3>
-
-                    </header>
-
-                    <div class="w3-container">
-                        <p>{{post.description}}</p>
-                    </div>
-
-                    <footer class="w3-container">
-                        <h5>{{user.username}}</h5>
-                    </footer>
-
-                </div>
-                        {% endfor %}
-
-
-            </div>
+                <h3><strong>Businesses</strong></h3></a>
+            <hr>
 
         </div>
 
 
+        <table class="w3-table w3-bordered">
+            <tr>
+                <th>Business Name</th>
+                <th>Email address</th>
+                <th>Category</th>
+                <th>Owner</th>
+            </tr>
+            {% for biz in businesses%}
+            <tr>
+                <td>{{biz.business_name}}</td>
+                <td>{{biz.address}}</td>
+                <td>{{biz.category}}</td>
+                <td>{{biz.owner.username}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div class="w3-row">
+        <div class=" w3-padding w3-center">
+            <a href="/post"><i class="fas fa-pen-square fa-2x w3-center"></i>
+                <h3><strong>Udaku Mtaani</strong></h3></a>
 
 
+        </div>
+        <div>
+            {% for post in posts%}
+
+            <div class="w3-card-2 w3-center">
+
+                <header class="w3-container">
+                    <h3>{{post.title}}</h3>
+
+                </header>
+
+                <div class="w3-container">
+                    <p>{{post.description}}</p>
+                </div>
+
+                <footer class="w3-container">
+                    <h5>{{user.username}}</h5>
+                </footer>
+
+            </div>
+            {% endfor %}
+
+
+        </div>
+        <div class="w3-row">
+
+                <div class=" w3-padding w3-center">
+                    <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center "></i>
+
+                        <h3><strong>Amenities</strong></h3></a>
+                    <hr>
+
+                </div>
+            <div class="w3-row">
+                <div class="w3-col l6">
+                    <h3>Health Care Department</h3>
+                </div>
+                     <div class="w3-col l6">
+                           <h3>Police Department</h3>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
 </div>
-{% endblock %}
+    {% endblock %}
