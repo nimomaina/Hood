@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+
+<div class="w3-row-padding">
+    <div class="w3-card-2">
+        <div class="w3-col l5">
+            {% if profile.profile.profile_pic%}
+            <img src="{{profile.profile.profile_pic.url}}" width="100px" height="100px " alt=""
+                 class="img-responsive" style="border-radius:50%">
+            {% endif %}
+            <p style="font-size: 20px;"><span class="profile-real-name"><strong>{{user.username}}</strong></span>
+
+                {% if profile.profile.full_name%}
+            <h1 class="profile-user-name" style="font-size: 25px;">{{profile.profile.full_name}}</h1>
+            {% else %}
+            <p style="font-size: 20px;"><span class="profile-real-name"><strong>{{user.username}}</strong></span>
+                {% endif %}
+                {% if profile.profile.hood%}
+
+            <p style="font-size: 20px;"><span class="profile-real-name"><strong>{{profile.profile.hood}}</strong></span>
+                {% else %}
+                <a href="/upload" class="w3-bar-item w3-button"><i class="fas fa-plus"></i> Add Hood</a>
+
+                {% endif %}
+
+
+        </div>
+        <div class="w3-col l7">
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
