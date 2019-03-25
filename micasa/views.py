@@ -23,6 +23,7 @@ def upload_hood(request):
         form = HoodForm(request.POST, request.FILES)
         if form.is_valid():
             upload = form.save(commit=False)
+            hood.owner= current_user
             upload.save()
             return redirect('home')
     else:
@@ -135,7 +136,7 @@ def search_category(request):
         searched_business = Business.search_by_category(category)
         message = f"{category}"
 
-        return render(request,'category/searched.html', {"message":message,"Category":searched_business})
+        return render(request,'search_business.html', {"message":message,"Category":searched_business})
 
     else:
         message = "You haven't searched for anything"

@@ -10,13 +10,30 @@
         <strong class="w3-xlarge"><i class="fas fa-map-marker-alt "></i> {{ hood.name }}, </strong>
         <strong class="w3-xlarge">{{hood.location}}</strong>
     </div>
-    <div class="w3-display-middle w3-text-white w3-center ">
-        <p>
-            <a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'leave' hood_id=hood.id %}">Leave Hood </a>
+    <div class="w3-display-middle  w3-center ">
+
+
+
+
+          <form class="navbar-form " role="search" action="{%url 'search_category' %}">
+            <input type="text" name="Category" placeholder="&#xF002;  Search Business Category" id="input"
+                   class="w3-input w3-round-xxlarge" style="font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit; width:200px;">
+        </form>
+
+          <strong class="w3-xlarge">Hood-Admin: {{hood.owner}}</strong>
+    </div>
+    <div class="w3-display-bottomright">
+          <p>
+            <a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white" href="{% url 'leave' hood_id=hood.id %}">Leave Hood </a>
         </p>
 
+    </div>
+    <div class="w3-display-bottomleft">
+                <p><a class="info w3-btn w3-round-xxlarge w3-pink w3-text-white" href="{% url 'upload_business' %}">Add Business</a></p>
 
-        <p><a class="info w3-btn w3-round-xxlarge w3-pink" href="{% url 'upload_business' %}">Add Business</a></p>
     </div>
 
 
@@ -56,6 +73,7 @@
         <div class=" w3-padding w3-center">
             <a href="/post"><i class="fas fa-pen-square fa-2x w3-center"></i>
                 <h3><strong>Udaku Mtaani</strong></h3></a>
+            <hr>
 
 
         </div>

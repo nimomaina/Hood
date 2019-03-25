@@ -48,6 +48,9 @@ class Hood(models.Model):
     image = ImageField()
     occupants = models.CharField(max_length=50)
     location = models.ForeignKey(Location)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+
+
 
 
     class Meta:

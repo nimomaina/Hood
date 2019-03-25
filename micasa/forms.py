@@ -7,7 +7,7 @@ from .models import *
 class HoodForm(forms.ModelForm):
     class Meta:
         model = Hood
-        fields = ['name', 'location','image','occupants']
+        fields = ['name', 'location','image',]
 
 class ProfileForm(forms.ModelForm):
     class Meta:
