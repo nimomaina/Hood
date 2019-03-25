@@ -89,7 +89,7 @@ def profile(request, username):
 
     return render(request, 'profile.html', locals())
 
-
+@login_required(login_url='/accounts/login/')
 def edit(request):
     current_user = request.user
     user = Profile.objects.get(user=current_user)
@@ -102,7 +102,7 @@ def edit(request):
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
-            return redirect('update_profile')
+            return redirect('profile')
     else:
         form = ProfileForm(instance=user)
     return render(request, 'edit_profile.html', locals())
