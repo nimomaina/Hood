@@ -84,19 +84,38 @@
         </div>
         <div class="w3-row">
 
-                <div class=" w3-padding w3-center">
-                    <a href="/upload_business"><i class="fas fa-briefcase fa-2x w3-center "></i>
+            <div class=" w3-padding w3-center">
 
-                        <h3><strong>Amenities</strong></h3></a>
-                    <hr>
 
-                </div>
-            <div class="w3-row">
+            </div>
+            <div class="w3-row w3-padding w3-center">
                 <div class="w3-col l6">
+                    <i class="fas fa-hospital-symbol fa-2x"></i>
+                    <br>
+
                     <h3>Health Care Department</h3>
+                    <div class="w3-card-4 w3-white w3-padding w3-margin ">
+                        <header><h4><strong>Contact Information</strong></h4>
+                            <hr>
+                        </header>
+                        <div class="w3-container w3-margin">
+
+                            <p><i class="fas fa-at"></i> {{hood.name}} General Hospital</p>
+                            <hr>
+                            <p><i class="fas fa-map-marker-alt"></i> {{hood.name}} Main Road</p>
+                            <hr>
+                            <p><i class="fas fa-phone"></i>Emergency contact: 07111222333</p>
+                            <hr>
+                        </div>
+
+
+                    </div>
+
                 </div>
-                     <div class="w3-col l6">
-                           <h3>Police Department</h3>
+                <div class="w3-col l6">
+                    <i class="fas fa-shield-alt fa-2x"></i>
+                    <br>
+                    <h3>Police Department</h3>
 
                 </div>
             </div>
@@ -107,4 +126,4 @@
 
     </div>
 </div>
-    {% endblock %}
+{% endblock %}
