@@ -34,9 +34,9 @@ def upload_hood(request):
 def hood(request,hood_id):
     current_user = request.user
     hood_name = current_user.profile.hood
-    hood = Hood.objects.get(id = request.user.profile.hood.id)
-    # business=Business.objects.get(id = request.user.profile.hood.id)
-
+    hood = Hood.objects.get(id=request.user.profile.hood.id)
+    businesses = Business.get_business(hood_id)
+    posts = Post.get_post(hood_id)
 
     return render(request,'hood.html',locals())
 
@@ -110,7 +110,7 @@ def edit(request):
 
 @login_required(login_url='/accounts/login')
 def upload_business(request):
-    hood = Hood.objects.get(id=request.user.profile.neighborhood.id)
+    hood = Hood.objects.get(id=request.user.profile.hood.id)
     if request.method == 'POST':
         businessform = BusinessForm(request.POST, request.FILES)
         if businessform.is_valid():

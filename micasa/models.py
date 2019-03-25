@@ -134,6 +134,12 @@ class Business(models.Model):
         return business
 
 
+    @classmethod
+    def get_business(cls, id):
+        business = Business.objects.filter(hood__pk=id)
+        return business
+
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -143,6 +149,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def get_post(cls, id):
+        post = Post.objects.filter(hood__pk=id)
+        return post
+
 
 
 
